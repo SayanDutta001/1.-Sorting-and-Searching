@@ -26,18 +26,18 @@ mt19937                 rng(chrono::steady_clock::now().time_since_epoch().count
 int chocolateDistribution(vi&arr,int m)
 {
     int n = arr.size();
-    if(m>n)
+    if(m>n) // if no. of children greater than the chocolate packets, return -1
         return -1;
     sort(arr.begin(),arr.end());
-    int i,j;
+    int i,j; // make a sliding window using two pointers
     i = 0, j=m-1;
     int mi = INT_MAX;
     while(j<n)
     {
-        mi = min(mi,arr[j] - arr[i]);
-        i++,j++;
+        mi = min(mi,arr[j] - arr[i]); // find the min of the max_element - min_element of the sliding window
+        i++,j++; // increment the pointers to move to the next window
     }
-    return mi;
+    return mi; 
 }
 
 int32_t main()
